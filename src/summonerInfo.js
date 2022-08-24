@@ -1,19 +1,23 @@
 import axios from "axios";
 
-const api_key = "RGAPI-d2072018-9b36-4f50-b74b-2af3999d4e0b";
+const api_key = "RGAPI-b2d12d01-2821-4011-9e6a-1b22149d0f15";
 
 export default{
     data() {
         return{
             name: '',
             summonerLevel: '',
-            puuid: ''
+            puuid: '',
+            accountId: '',
+            profileIconId: '',
         }
     },
     methods: {
         searchName: function(a){
-            if(this.a == ''){
-                alert('검색하진 소환사는 존재하지 않습니다.') 
+            if(a == ''){
+                alert('소환사명을 다시 입력해주세요.') 
+            } else if(a == 'undefined'){
+                alert('소환사명을 다시 입력해주세요.')
             } else {
                 axios({
                     data: {
@@ -25,9 +29,8 @@ export default{
                     this.name = response.data.name;
                     this.puuid = response.data.puuid;
                     this.summonerLevel = response.data.summonerLevel;
-                    console.log(response);
-                    console.log(this.name);
-                    alert('검색 완료');
+                    this.accountId = response.data.accountId;
+                    this.profileIconId = response.data.profileIconId; 
                 })
             }
         }
